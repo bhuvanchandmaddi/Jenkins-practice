@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    
+    parameters {
+        string(name: 'PARAMETER_NAME', defaultValue: 'default_value', description: 'Description of the parameter')
+        choice(name: 'CHOICE_PARAMETER', choices: ['Option 1', 'Option 2', 'Option 3'], description: 'Choose an option')
+        booleanParam(name: 'BOOLEAN_PARAMETER', defaultValue: true, description: 'Enable or disable something')
+    }
+    
+    stages {
+        stage('Example Stage') {
+            steps {
+                echo "PARAMETER_NAME: ${params.PARAMETER_NAME}"
+                echo "CHOICE_PARAMETER: ${params.CHOICE_PARAMETER}"
+                echo "BOOLEAN_PARAMETER: ${params.BOOLEAN_PARAMETER}"
+                
+                // Use the parameters in your pipeline steps
+                // For example:
+                // if (params.BOOLEAN_PARAMETER) {
+                //     sh 'echo Enabled'
+                // } else {
+                //     sh 'echo Disabled'
+                // }
+            }
+        }
+    }
+}
+
